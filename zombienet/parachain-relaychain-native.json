@@ -39,11 +39,42 @@
         "--rpc-cors=all"
       ],
       "collators": [{
-        "command": "polkadot-parachain",
+        "command": "parachain-template-node",
         "name": "alice",
-        "ws_port": "{{PARA_WS_PORT}}",
-        "rpc_port": "{{PARA_RPC_PORT}}"
+        "ws_port": "{{PARA1_WS_PORT}}",
+        "rpc_port": "{{PARA1_RPC_PORT}}"
       }]
+    },
+    {
+      "cumulus_based": true,
+      "id": 2001,
+      "default_args": [
+        "--trie-cache-size=0",
+        "--state-pruning=archive",
+        "--no-hardware-benchmarks",
+        "--unsafe-ws-external",
+        "--unsafe-rpc-external",
+        "--rpc-cors=all"
+      ],
+      "collators": [{
+        "command": "parachain-template-node",
+        "name": "alice",
+        "ws_port": "{{PARA2_WS_PORT}}",
+        "rpc_port": "{{PARA2_RPC_PORT}}"
+      }]
+    }
+  ],
+  "hrmp_channels": [
+    {
+      "sender": 2000,
+      "recipient": 2001,
+      "max_capacity": 8,
+      "max_message_size": 512
+    },{
+      "sender": 2001,
+      "recipient": 2000,
+      "max_capacity": 8,
+      "max_message_size": 512
     }
   ]
 }
