@@ -462,6 +462,11 @@ impl pallet_template::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
 }
 
+impl pallet_sudo::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+	type RuntimeCall = RuntimeCall;
+}
+
 /// The means for routing XCM messages which are not for local execution into the right message
 /// queues.
 pub type XcmRouter = (
@@ -492,6 +497,7 @@ construct_runtime!(
 		} = 1,
 		Timestamp: pallet_timestamp::{Pallet, Call, Storage, Inherent} = 2,
 		ParachainInfo: parachain_info::{Pallet, Storage, Config} = 3,
+		Sudo: pallet_sudo::{Pallet, Call, Storage, Config<T>, Event<T>} = 4,
 
 		// Monetary stuff.
 		Balances: pallet_balances::{Pallet, Call, Storage, Config<T>, Event<T>} = 10,
