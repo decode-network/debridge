@@ -1,0 +1,49 @@
+{
+  "settings": {
+    "provider": "native",
+    "timeout": 1800
+  },
+  "relaychain": {
+    "chain": "rococo-local",
+    "default_command": "polkadot",
+    "default_args": [
+      "-lparachain=debug",
+      "--state-pruning=archive",
+      "--no-hardware-benchmarks"
+    ],
+    "nodes": [
+      {
+        "name": "alice",
+        "validator": true,
+        "env": [{ "name": "RUST_LOG", "value": "trace" }],
+        "ws_port": "{{RELAY_WS_PORT}}",
+        "rpc_port": "{{RELAY_RPC_PORT}}"
+      },
+      {
+        "name": "bob",
+        "validator": true,
+        "env": [{ "name": "RUST_LOG", "value": "trace" }]
+      }
+    ]
+  },
+  "parachains": [
+    {
+      "cumulus_based": true,
+      "id": 2000,
+      "default_args": [
+        "--trie-cache-size=0",
+        "--state-pruning=archive",
+        "--no-hardware-benchmarks",
+        "--unsafe-ws-external",
+        "--unsafe-rpc-external",
+        "--rpc-cors=all"
+      ],
+      "collators": [{
+        "command": "polkadot-parachain",
+        "name": "alice",
+        "ws_port": "{{PARA_WS_PORT}}",
+        "rpc_port": "{{PARA_RPC_PORT}}"
+      }]
+    }
+  ]
+}
