@@ -213,9 +213,7 @@ fn testnet_genesis(
 				})
 				.collect(),
 		},
-		sudo: SudoConfig {
-			key: Some(root_key),
-		},
+		sudo: SudoConfig { key: Some(root_key) },
 		// no need to pass anything to aura, in fact it will panic if we do. Session will take care
 		// of this.
 		aura: Default::default(),
