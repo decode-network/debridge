@@ -16,8 +16,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Cancel Previous Runs
+      uses: styfle/cancel-workflow-action@0.11.0
+
     - name: Checkout Code
       uses: actions/checkout@v3
+
     - name: Install Protoc
       uses: arduino/setup-protoc@v1
 
