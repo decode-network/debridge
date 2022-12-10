@@ -222,5 +222,10 @@ fn testnet_genesis(
 		polkadot_xcm: parachain_template_runtime::PolkadotXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
+		assets: parachain_template_runtime::AssetsConfig {
+			assets: vec![(0, get_account_id_from_seed::<sr25519::Public>("Alice"), true, 1_000)],
+			metadata: vec![(0, b"TEST".to_vec(), b"TestCoin".to_vec(), 3)],
+			accounts: vec![(0, get_account_id_from_seed::<sr25519::Public>("Alice"), 1_000_000_000_000)],
+		}
 	}
 }
